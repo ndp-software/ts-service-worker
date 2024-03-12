@@ -1,0 +1,17 @@
+{
+  "plan": [
+    {
+      "strategy": "cache-on-install",
+      "paths": "http://localhost:5000/"
+    },
+    {
+      "strategy": "networkFirst",
+      "paths": "Origin"
+    }
+  ],
+  "options": {
+    "version": "1.0",
+    "skipWaiting": true,
+    "debug": true
+  }
+}

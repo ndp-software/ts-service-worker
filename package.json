@@ -1,0 +1,57 @@
+{
+  "name": "ts-service-worker",
+  "version": "1.2.0",
+  "description": "Generate caching service-worker.js using declarative Typescript. Copyright (c) 2023 NDP Software. All Rights Reserved.",
+  "author": {
+    "name": "Andrew Peterson, NDP Software",
+    "email": "andy@ndpsoftware.com"
+  },
+  "keywords": [
+    "build",
+    "cache",
+    "declarative configuration",
+    "offline",
+    "progressive web apps",
+    "pwa",
+    "service worker",
+    "sw",
+    "ts",
+    "typescript"
+  ],
+  "license": "UNLICENSED",
+  "sideEffects": false,
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./types/index.d.mts",
+  "bin": {
+    "ts-service-worker": "./dist/cli.mjs"
+  },
+  "files": [
+    "README.md",
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "example1": "node --loader tsx example/amp-what-sw.mts",
+    "example2": "./dist/cli.mjs example/offline-backup.json",
+    "test": "node --test --loader tsx src/specs/*.mts",
+    "build": "npm run clean && npm run build-dist && npm run build-bin && npm run build-types",
+    "clean": "rm -fr ./dist/* ./types/*",
+    "build-dist": "./node_modules/.bin/esbuild --target=esnext --outfile=./dist/index.js --bundle --platform=node --sourcemap --format=cjs src/index.mts",
+    "build-bin": "esbuild --banner:js=\"#!/usr/bin/env node\" --bundle --platform=node --format=esm --target=es2022 src/cli.mts --outfile=dist/cli.mjs && chmod u+x dist/cli.mjs",
+    "build-types": "tsc -p src/tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "typescript": "*",
+    "esbuild": "*",
+    "tsx": "*"
+  },
+  "dependencies": {
+    "glob": "^10.3.10"
+  }
+}
