@@ -131,6 +131,7 @@ function regexEscape(s) {
 }
 
 function withOrigin(path) {
+    if (typeof path !== 'string') return path
     if (path.match(/https?:\\/\\//)) return path
     if (path.startsWith('/')) return self.origin + path
     return self.origin + '/' + path

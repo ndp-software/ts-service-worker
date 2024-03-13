@@ -270,7 +270,7 @@ All developer actions are listed in the `scripts` section of `package.json`. The
 Published using `npm publish`.
 
 ### TODO
-  - [ ] Fix bug where `withOrigin` gets applied to regular expressions.
+  - [x] Fix bug where `withOrigin` gets applied to regular expressions.
   - [ ] Fix CLI for Symbols like "Origin", or remove this workflow.
   - [ ] Other matching mechanisms, like mime-type.
   - [ ] https://web.dev/learn/pwa/serving/#cache-only
