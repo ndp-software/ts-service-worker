@@ -63,9 +63,11 @@ Another example: a common strategy is to pre-cache some resources when the servi
 ```
 These are just a few examples of a caching plan. Each application is different and requires careful consideration and crafting. **TS-Service-Worker** makes developing a custom caching service worker easy and error-free.
 
-## Usage
+## Getting Started and Usage
 
-After npm installing, there are several ways to use this:
+Install with npm, yarn or your weapon of choice. There are no prerequisites, but Typescript is key to reaping the benefits.
+
+There are several ways to use this:
 
 ### Within Express
 
@@ -257,7 +259,17 @@ And since service workers run in the browser, they must be written in the browse
 
 There are [other libraries](#other-libraries) designed to help, which may be useful to you. **TS-Service-Worker** aims to solve specific challenges.
 
-## TODO
+
+## Development
+
+All developer actions are listed in the `scripts` section of `package.json`. The most important are:
+  - `example1` and `example2`: see some sample Plans and output
+  - `test`: run the automated tests
+  - `build`: build the library (everything)
+
+Published using `npm publish`.
+
+### TODO
 1. Other matching mechanisms, like mime-type.
 2. https://web.dev/learn/pwa/serving/#cache-only
 3. filter/only strategy: to process only certain types, eg. `{ strategy: 'filter', paths: ' /https?:.*/ }`. This is weird semantically, so I'm still thinking.
@@ -278,7 +290,7 @@ These are the basics of how service workers function:
   - <a href="https://amp-what.com/service-worker.js" nofollow noindex>https://amp-what.com/service-worker.js</a>
   - <a href="https://www.gotomyhead.site/serviceWorker.js" nofollow noindex>https://www.gotomyhead.site/serviceWorker.js</a>
 
-## Other Libraries (The comp-e-ti-tion)
+### Other Libraries (The comp-e-ti-tion)
 - https://web.dev/learn/pwa/workbox/ -- popular and very cool tool. This will work for many projects, but I was looking for something where I had a little more control.
 - https://vite-pwa-org.netlify.app/frameworks/sveltekit.html
 - https://github.com/veiss-com/sw-tools#offline -- very specific features
@@ -288,4 +300,4 @@ These are the basics of how service workers function:
 
 Copyright (c) 2023-2024 Andrew J. Peterson, dba NDP Software  All Rights Reserved.
 
-Available for licensing at reasonable rate. Please contact NDP Software.
+Available for licensing at reasonable rate. Please contact [NDP Software](mailto:andy@ndpsoftware.com?subject=ts-service-worker).
