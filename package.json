@@ -1,6 +1,6 @@
 {
   "name": "ts-service-worker",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Generate caching service-worker.js using declarative Typescript. Copyright (c) 2023 NDP Software. All Rights Reserved.",
   "author": {
     "name": "Andrew Peterson, NDP Software",
