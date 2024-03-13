@@ -16,8 +16,8 @@ Copyright (c) 2023-2024 Andrew J. Peterson, dba NDP Software  All Rights Reserve
 #### NOTICE
 This is in testing... It works on two very different projects. I'd love people to try it out and provide feedback.
 
-## Overview
-he idea is simple: Provide TS-Service-Worker with a Plan and options. It will then output a functional Javascript file for the browser. The **Plan** applies a series of caching strategies to specified paths.
+## Overview and Definitions
+he idea is simple: Provide TS-Service-Worker with a Plan and options. It will then output a functional Javascript file for the browser. The **Plan** applies a series of caching **strategies** to specified **paths**.
 
 ## Examples
 
