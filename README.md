@@ -270,14 +270,16 @@ All developer actions are listed in the `scripts` section of `package.json`. The
 Published using `npm publish`.
 
 ### TODO
-1. Other matching mechanisms, like mime-type.
-2. https://web.dev/learn/pwa/serving/#cache-only
-3. filter/only strategy: to process only certain types, eg. `{ strategy: 'filter', paths: ' /https?:.*/ }`. This is weird semantically, so I'm still thinking.
-5. https://web.dev/learn/pwa/workbox/#offline-fallback
-   https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers#recovering_failed_requests  
-6. offline SVG: https://github.com/veiss-com/sw-tools#offline
-6. https://github.com/veiss-com/sw-tools#limiting-the-cache-size
-7. expiring cache / expirations on cached items
+  - [ ] Fix bug where `withOrigin` gets applied to regular expressions.
+  - [ ] Fix CLI for Symbols like "Origin", or remove this workflow.
+  - [ ] Other matching mechanisms, like mime-type.
+  - [ ] https://web.dev/learn/pwa/serving/#cache-only
+  - [ ] filter/only strategy: to process only certain types, eg. `{ strategy: 'filter', paths: ' /https?:.*/ }`. This is weird semantically, so I'm still thinking.
+  - [ ] https://web.dev/learn/pwa/workbox/#offline-fallback
+  - [ ] https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers#recovering_failed_requests  
+  - [ ] offline SVG: https://github.com/veiss-com/sw-tools#offline
+  - [ ] https://github.com/veiss-com/sw-tools#limiting-the-cache-size
+  - [ ] expiring cache / expirations on cached items
 
 ## References
 These are the basics of how service workers function:
