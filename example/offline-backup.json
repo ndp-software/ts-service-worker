@@ -2,7 +2,7 @@
   "plan": [
     {
       "strategy": "cache-on-install",
-      "paths": "http://localhost:5000/"
+      "paths": "/"
     },
     {
       "strategy": "networkFirst",
