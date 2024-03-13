@@ -17,7 +17,7 @@ Copyright (c) 2023-2024 Andrew J. Peterson, dba NDP Software  All Rights Reserve
 This is in testing... It works on two very different projects. I'd love people to try it out and provide feedback.
 
 ## Overview
-The idea is simple. You provide TS-Service-Worker with a **Plan** (and options), and it outputs a functional Javascript file that can be sent to the browser. The **Plan** is a series of caching strategies to be applied, along with the paths they should be applied to.
+he idea is simple: Provide TS-Service-Worker with a Plan and options. It will then output a functional Javascript file for the browser. The **Plan** applies a series of caching strategies to specified paths.
 
 ## Examples
 
@@ -30,7 +30,8 @@ export const plan: Plan = [
 ]
 app.get('/service-worker.js', requestHandler(plan))
 ```
-This plan says, "intercept all the requests, and serve them from the network if available; otherwise, serve from the cache." This is just one of the example caching strategies, and demonstrates the declarative configuration-- and how a simple caching strategy like this is insufficient-- even though almost every single example implementation uses strategies like this. (shrug)
+This plan says, "intercept all the requests, and serve them from the network if available; otherwise, serve from the cache."
+This is just one example of a caching strategy. It demonstrates the declarative configuration. However, a simple caching strategy like this is often insufficient, despite its widespread use in example implementations.
 
 Some of the deficiencies of this strategy:
 - it only caches paths that have been visited
@@ -56,9 +57,10 @@ Another example: a common strategy is to pre-cache some resources when the servi
   {
     strategy: 'cache-on-install',
     files: {
-      dir: 'src/assets/images', // Root of search
-      glob: '*.png',            // match
-      prefix: '/img'}           // pre-pended to matched relative path
+      dir:    'src/assets/images', // Root of search
+      glob:   '*.png',             // match
+      prefix: '/img'               // pre-pended to matched relative path
+    }
   }
 ```
 These are just a few examples of a caching plan. Each application is different and requires careful consideration and crafting. **TS-Service-Worker** makes developing a custom caching service worker easy and error-free.
@@ -72,7 +74,7 @@ There are several ways to use this:
 ### Within Express
 
 This package exports a request handler called, `requestHandle`.  So using directly within Express (or equivalent) is convenient and provides good Typescript type hints.
- This request handler builder is a function that accepts a **plan** and **options** and returns a function that can be used as a route handler. Here's an example of how to use it in an Express app:
+his request handler builder is a function that accepts a Plan and options and returns a function that can be used as a route handler. Here's an example of how to use it in an Express app:
 
 ```ts
 import { requestHandler } from 'ts-service-worker'
@@ -253,7 +255,7 @@ If this isn't what you want, you can accelerate this by passing `skipWaiting: tr
 
 Service workers are a powerful tool for developers to improve the user experience, providing for fine-grained caching, offline usage and progressive web apps (PWAs). It replaced the coarse-grained _AppCache_, which proved quite hard to use (and was retired). 
 
-Unfortunately, the service worker API is also hard to use as well, as it is quite low-level. It requires a series of nested promise chains, and quickly grows complicated. In the documentation contains good examples describing single specific strategies. While these are readable, they are minimally useful because real-world usage requires integrating several of these strategies at the same time. This can be error-prone and hard to follow. And as anyone who has developed service workers knows, they are tedious to test because of the complex lifecycle.
+Unfortunately, the service worker API is hard to use as well, as it is quite low-level. It requires a series of nested promise chains, and quickly grows complicated. In the documentation contains good examples describing single specific strategies. While these are readable, they are minimally useful because real-world usage requires integrating several of these strategies at the same time. This can be error-prone and hard to follow. And as anyone who has developed service workers knows, they are tedious to test because of the complex lifecycle.
 
 And since service workers run in the browser, they must be written in the browser's version Javascript. This likely involves transcompilation, which will requiring additional complexity in the build process to produce a separate artifact. It can be quite challenging in a Typescript and JS-bundling project (most projects). Typically the service-worker will require a different build path than the rest of your code because it must be distributed as a separate resource.
 
