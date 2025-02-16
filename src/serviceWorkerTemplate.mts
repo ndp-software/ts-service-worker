@@ -111,7 +111,7 @@ function fileFromCache(name) {
 function toCache(event, response) {
     if (!response.ok) {
         log(\`skipping cache of failed request \${event.request.url} with status \${response.status} \${response.statusText}\`);
-        return response;
+        return Promise.resolve(response);
     }
     return caches.open(CACHE_NAME)
         .then(function (cache) {
