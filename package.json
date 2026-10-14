@@ -32,9 +32,9 @@
     "types"
   ],
   "scripts": {
-    "example1": "node --loader tsx example/amp-what-sw.mts",
+    "example1": "node --import tsx example/amp-what-sw.mts",
     "example2": "./dist/cli.mjs example/offline-backup.json",
-    "test": "node --test --loader tsx src/specs/*.mts",
+    "test": "node --test --import tsx src/specs/*.mts",
     "build": "npm run clean && npm run build-dist && npm run build-bin && npm run build-types",
     "clean": "rm -fr ./dist/* ./types/*",
     "build-dist": "./node_modules/.bin/esbuild --target=esnext --outfile=./dist/index.js --bundle --platform=node --sourcemap --format=cjs src/index.mts",
@@ -43,15 +43,15 @@
     "prepublishOnly": "npm run build"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=22"
   },
   "devDependencies": {
     "@types/node": "*",
-    "typescript": "*",
     "esbuild": "*",
-    "tsx": "*"
+    "tsx": "*",
+    "typescript": "*"
   },
   "dependencies": {
-    "glob": "^10.3.10"
+    "glob": "*"
   }
 }
