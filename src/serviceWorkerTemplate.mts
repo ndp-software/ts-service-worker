@@ -5,6 +5,7 @@ const SCOPE_MATCHER = new RegExp(\`^\${regexEscape(self.registration.scope)}.*\`
 
 // VARIABLES
 
+// Wire up the service worker install/activate/fetch interceptor.
 self.addEventListener('install', function (event) {
     event.waitUntil(caches.open(CACHE_NAME).then(function (cache) {
         return cache.addAll(PRELOAD_PATHS)
@@ -15,6 +16,7 @@ self.addEventListener('install', function (event) {
             .then(() => SKIP_WAITING && self.skipWaiting());
     }));
 });
+
 self.addEventListener('activate', function (event) {
     event.waitUntil(caches.keys()
         .then(cacheNames => Promise.all(cacheNames
@@ -24,6 +26,7 @@ self.addEventListener('activate', function (event) {
         return caches.delete(cacheName);
     }))));
 });
+
 self.addEventListener('fetch', function (event) {
     
     const url = event.request.url.replace(/#.*$/, '');
@@ -47,7 +50,8 @@ self.addEventListener('fetch', function (event) {
                 path.exec(url) : url === path);
     }
 });
-// Caching strategies
+
+// Caching strategies (public API)
 function staleWhileRevalidate(event) {
     return fromCache(event)
         .then(function (response) {
@@ -85,6 +89,7 @@ function networkOnly(event) {
     logEvent(event, 'networkOnly');
     return fetchRequest(event);
 }
+
 // Low-level helpers
 function fetchRequest(event) {
     return fetch(event.request);
@@ -119,13 +124,17 @@ function toCache(event, response) {
         return response;
     });
 }
+
+// General Utilities
 function logEvent(event, action) {
     log(\`\${action} for \` + event.request.url);
 }
+
 function log(s) {
     if (DEBUG)
         console.log('[SW] ' + s);
 }
+
 function regexEscape(s) {
     return s.replace(/([/.])/g, '\\\\$&');
 }

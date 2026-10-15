@@ -121,7 +121,7 @@ export const ScopeAndBelow = Symbol.for('scope-and-below')
 Users may specify paths to be cached in a variety of ways.
  */
 export type InputPaths =
-  RegExp | string | OutputPaths | typeof OriginAndBelow | typeof ScopeAndBelow
+  RegExp | string | typeof OriginAndBelow | typeof ScopeAndBelow | OutputPaths
 
 /*
 `OutputPaths` are the paths included in the service worker. All

@@ -229,6 +229,7 @@ The following may be provided as `options`, and they affect the generation of th
 * `version` – semantic version of the worker. Major or minor version change implies (and forces) a reset of the cache on the browser. It has no other meaning.
 * `skipWaiting` – executes the normal skip waiting logic, and allows your service worker to come into play without all the browser windows being closed.
 * `debug` – outputs log messages as files are fetched. This is too noisy for production, but may be useful to figure out what is going on with your service worker.
+* `compact` – outputs compacted code, as opposed to non-compact easier to read and diff code
 
 #### `Version` and Clearing the Cache
 There are two components that relevant here:
