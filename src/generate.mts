@@ -116,7 +116,7 @@ export function pathToJS(path: InputPaths) {
     case 'symbol':
       return path == OriginAndBelow ? 'ORIGIN_MATCHER' : 'SCOPE_MATCHER'
     default:
-      return `${String(path)}`
+      return String(path)
   }
 }
 

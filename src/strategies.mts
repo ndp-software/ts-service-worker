@@ -138,34 +138,6 @@ export function isRoutableStrategy<Paths>(x: { strategy: string }): x is Routabl
     || x.strategy === 'staticOfflineBackup'
 }
 
-export function convertPreloadFilesToPaths(strategy: CacheFileOnInstall): CachePathOnInstall {
-  const paths = filesSpecToPaths(strategy.files)
-  return {
-    strategy: 'cache-on-install',
-    paths
-  }
-}
-
-/**
- * Converts paths specified by scanning the disk to the paths
- * that are the result of that scan.
- * Users may specific some paths as "files", which are
- * then determined by scanning the disk (with glob patterns.)
- * Obviously this is useful for certain static resources,
- * where it might be tedious to keep the service worker spec
- * up-to-date with resources in a folder.
- * The downside of this are that it can pick up extra files
- * without the developer being aware, so it's important to
- * review either the generated service worker code, or the
- * cache created in the browser.
- */
-export function convertPreloadFiles(strategy: InputCacheStrategy): InputCacheStrategyAsPaths {
-  if (isCacheFileOnInstall(strategy))
-    return convertPreloadFilesToPaths(strategy)
-  else
-    return strategy
-}
-
 /**
  * Run through all the strategies in a plan and extract all
  * the paths that should be "preloaded" on service worker
@@ -203,4 +175,32 @@ export function convertPreloadPathsToCacheFirst(spec: Array<InputCacheStrategyAs
 
 export function convertAllFilesToPaths(spec: Array<InputCacheStrategy>): Array<InputCacheStrategyAsPaths> {
   return spec.map(convertPreloadFiles);
+}
+
+/**
+ * Converts paths specified by scanning the disk to the paths
+ * that are the result of that scan.
+ * Users may specific some paths as "files", which are
+ * then determined by scanning the disk (with glob patterns.)
+ * Obviously this is useful for certain static resources,
+ * where it might be tedious to keep the service worker spec
+ * up-to-date with resources in a folder.
+ * The downside of this are that it can pick up extra files
+ * without the developer being aware, so it's important to
+ * review either the generated service worker code, or the
+ * cache created in the browser.
+ */
+export function convertPreloadFiles(strategy: InputCacheStrategy): InputCacheStrategyAsPaths {
+  if (isCacheFileOnInstall(strategy))
+    return convertPreloadFilesToPaths(strategy)
+  else
+    return strategy
+}
+
+export function convertPreloadFilesToPaths(strategy: CacheFileOnInstall): CachePathOnInstall {
+  const paths = filesSpecToPaths(strategy.files)
+  return {
+    strategy: 'cache-on-install',
+    paths
+  }
 }
