@@ -6,7 +6,7 @@ import {OriginAndBelow, ScopeAndBelow} from "../strategies.mjs";
 describe('generateServiceWorker', () => {
 
   test('uses default options for an empty plan', () => {
-    const actual = generateServiceWorker([])
+    const actual = generateServiceWorker([], {compact: true})
 
     assert.match(actual, /const DEBUG = false;/)
     assert.match(actual, /const SKIP_WAITING = false;/)
@@ -28,7 +28,8 @@ describe('generateServiceWorker', () => {
     const actual = generateServiceWorker(plan, {
       version: '1.2.3',
       debug: true,
-      skipWaiting: true
+      skipWaiting: true,
+      compact: true
     })
 
     assert.match(actual, /const DEBUG = true;/)
@@ -56,7 +57,6 @@ describe('generateServiceWorker', () => {
     const plan = [{strategy: 'networkOnly', paths: '/api'}] satisfies Plan
 
     const actual = generateServiceWorker(plan, {
-      // compact: false
       compact: true
     })
 

@@ -98,6 +98,14 @@ export type RoutableStrategy<Paths> = CacheFirstStrategy<Paths>
   | NetworkOnlyStrategy<Paths>
   | StaticOfflineBackupStrategy<Paths>
 
+export function isRoutableStrategy<Paths>(x: { strategy: string }): x is RoutableStrategy<Paths> {
+  return x.strategy === 'cacheFirst'
+    || x.strategy === 'networkFirst'
+    || x.strategy === 'networkOnly'
+    || x.strategy === 'staleWhileRevalidate'
+    || x.strategy === 'staticOfflineBackup'
+}
+
 export type CacheOnInstallStrategy = CachePathOnInstall
   | CacheFileOnInstall
 
@@ -129,14 +137,6 @@ the variety of expression included in `InputPaths` have been converted
 to a simple array that can be iterated.
  */
 export type OutputPaths = Array<string | RegExp>
-
-export function isRoutableStrategy<Paths>(x: { strategy: string }): x is RoutableStrategy<Paths> {
-  return x.strategy === 'cacheFirst'
-    || x.strategy === 'networkFirst'
-    || x.strategy === 'networkOnly'
-    || x.strategy === 'staleWhileRevalidate'
-    || x.strategy === 'staticOfflineBackup'
-}
 
 /**
  * Run through all the strategies in a plan and extract all
